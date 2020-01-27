@@ -19,6 +19,8 @@ using Microsoft.AspNetCore.CookiePolicy;
 
 namespace Company.WebApplication1
 {
+    using Microsoft.Extensions.Hosting;
+
     public class Startup
     {
         public Startup(IConfiguration configuration)
@@ -75,27 +77,27 @@ namespace Company.WebApplication1
                     });
             }
 
-            services.AddMvc()
-                .AddRazorPagesOptions(options =>
-                {
-                    options.Conventions.AuthorizeFolder("/");
+            services.AddRazorPages(options =>
+            {
+                options.Conventions.AuthorizeFolder("/");
 
-                    options.Conventions.AllowAnonymousToPage("/Error");
-                    options.Conventions.AllowAnonymousToPage("/Account/AccessDenied");
-                    options.Conventions.AllowAnonymousToPage("/Account/ConfirmEmail");
-                    options.Conventions.AllowAnonymousToPage("/Account/ExternalLogin");
-                    options.Conventions.AllowAnonymousToPage("/Account/ForgotPassword");
-                    options.Conventions.AllowAnonymousToPage("/Account/ForgotPasswordConfirmation");
-                    options.Conventions.AllowAnonymousToPage("/Account/Lockout");
-                    options.Conventions.AllowAnonymousToPage("/Account/Login");
-                    options.Conventions.AllowAnonymousToPage("/Account/LoginWith2fa");
-                    options.Conventions.AllowAnonymousToPage("/Account/LoginWithRecoveryCode");
-                    options.Conventions.AllowAnonymousToPage("/Account/Register");
-                    options.Conventions.AllowAnonymousToPage("/Account/ResetPassword");
-                    options.Conventions.AllowAnonymousToPage("/Account/ResetPasswordConfirmation");
-                    options.Conventions.AllowAnonymousToPage("/Account/SignedOut");
-                })
-                .SetCompatibilityVersion(CompatibilityVersion.Latest);
+                options.Conventions.AllowAnonymousToPage("/Error");
+                options.Conventions.AllowAnonymousToPage("/Account/AccessDenied");
+                options.Conventions.AllowAnonymousToPage("/Account/ConfirmEmail");
+                options.Conventions.AllowAnonymousToPage("/Account/ExternalLogin");
+                options.Conventions.AllowAnonymousToPage("/Account/ForgotPassword");
+                options.Conventions.AllowAnonymousToPage("/Account/ForgotPasswordConfirmation");
+                options.Conventions.AllowAnonymousToPage("/Account/Lockout");
+                options.Conventions.AllowAnonymousToPage("/Account/Login");
+                options.Conventions.AllowAnonymousToPage("/Account/LoginWith2fa");
+                options.Conventions.AllowAnonymousToPage("/Account/LoginWithRecoveryCode");
+                options.Conventions.AllowAnonymousToPage("/Account/Register");
+                options.Conventions.AllowAnonymousToPage("/Account/ResetPassword");
+                options.Conventions.AllowAnonymousToPage("/Account/ResetPasswordConfirmation");
+                options.Conventions.AllowAnonymousToPage("/Account/SignedOut");
+            });
+            services.AddControllersWithViews()
+                .SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
 
             services.Configure<MailManagerOptions>(Configuration.GetSection("Email"));
 
@@ -113,7 +115,7 @@ namespace Company.WebApplication1
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
             {
@@ -130,16 +132,15 @@ namespace Company.WebApplication1
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseCookiePolicy();
-
+            app.UseRouting();
             app.UseAuthentication();
+            app.UseAuthorization();
 
-            app.UseMvc(routes =>
+            app.UseEndpoints(endpoints =>
             {
-                routes.MapRoute(
-                    name: "default",
-                    template: "{controller}/{action=Index}/{id?}");
+                endpoints.MapDefaultControllerRoute();
+                endpoints.MapRazorPages();
             });
-
         }
     }
 }
