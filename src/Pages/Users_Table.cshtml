@@ -1,0 +1,41 @@
+﻿@model IList<asp_net_admin.Models.User>
+@{
+}
+<table id="userTable" class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => Model[0].Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => Model[0].Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => Model[0].Role)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => Model[0].UserConfig)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Email)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.Role.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UserConfig.Id)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
