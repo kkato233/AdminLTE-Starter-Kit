@@ -84,10 +84,6 @@
       ]
     },
     {
-      "library": "datatables@1.10.19",
-      "destination": "wwwroot/libs/datatables/"
-    },
-    {
       "library": "fastclick@1.0.6",
       "destination": "wwwroot/libs/fastclick/"
     },
@@ -199,6 +195,18 @@
     {
       "library": "jquery-mapael@2.2.0",
       "destination": "wwwroot/libs/jquery-mapanel/"
+    },
+    {
+      "library": "icheck-bootstrap@3.0.1",
+      "destination": "wwwroot/libs/icheck-bootstrap/"
+    },
+    {
+      "library": "jszip@3.10.1",
+      "destination": "wwwroot/libs/jszip/"
+    },
+    {
+      "library": "pdfmake@0.2.10",
+      "destination": "wwwroot/libs/pdfmake/"
     }
   ]
 }
