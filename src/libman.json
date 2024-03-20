@@ -3,15 +3,15 @@
   "defaultProvider": "cdnjs",
   "libraries": [
     {
-      "library": "admin-lte@2.4.10",
+      "library": "admin-lte@3.2.0",
       "destination": "wwwroot/libs/admin-lte/"
     },
     {
-      "library": "twitter-bootstrap@3.4.1",
+      "library": "twitter-bootstrap@4.6.1",
       "destination": "wwwroot/libs/bootstrap/"
     },
     {
-      "library": "bootstrap-colorpicker@2.5.3",
+      "library": "bootstrap-colorpicker@3.4.0",
       "destination": "wwwroot/libs/bootstrap-colorpicker/"
     },
     {
@@ -23,7 +23,7 @@
       "destination": "wwwroot/libs/bootstrap-daterangepicker/"
     },
     {
-      "library": "bootstrap-slider@10.6.1",
+      "library": "bootstrap-slider@11.0.2",
       "destination": "wwwroot/libs/bootstrap-slider/"
     },
     {
@@ -35,7 +35,7 @@
       "destination": "wwwroot/libs/bootstrap-wysiwyg5/"
     },
     {
-      "library": "Chart.js@1.1.1",
+      "library": "Chart.js@2.9.4",
       "destination": "wwwroot/libs/chart.js/"
     },
     {
@@ -92,15 +92,15 @@
       "destination": "wwwroot/libs/fastclick/"
     },
     {
-      "library": "flot@0.8.3",
+      "library": "flot@4.2.2",
       "destination": "wwwroot/libs/flot/"
     },
     {
-      "library": "font-awesome@4.7.0",
+      "library": "font-awesome@5.15.4",
       "destination": "wwwroot/libs/font-awesome/"
     },
     {
-      "library": "fullcalendar@3.10.0",
+      "library": "fullcalendar@5.10.1",
       "destination": "wwwroot/libs/fullcalendar/"
     },
     {
@@ -108,14 +108,14 @@
       "destination": "wwwroot/libs/icheck/"
     },
     {
-      "library": "inputmask@3.3.11",
+      "library": "jquery.inputmask@5.0.8",
       "destination": "wwwroot/libs/inputmask/",
       "files": [
-        "jquery.inputmask.bundle.min.js"
+        "jquery.inputmask.min.js"
       ]
     },
     {
-      "library": "ion-rangeslider@2.3.0",
+      "library": "ion-rangeslider@2.3.1",
       "destination": "wwwroot/libs/ion-rangeslider/"
     },
     {
@@ -134,7 +134,7 @@
       ]
     },
     {
-      "library": "jquery@3.4.1",
+      "library": "jquery@3.6.0",
       "destination": "wwwroot/libs/jquery/",
       "files": [
         "jquery.min.js",
@@ -195,6 +195,10 @@
     {
       "library": "select2@4.0.7",
       "destination": "wwwroot/libs/select2/"
+    },
+    {
+      "library": "jquery-mapael@2.2.0",
+      "destination": "wwwroot/libs/jquery-mapanel/"
     }
   ]
 }
