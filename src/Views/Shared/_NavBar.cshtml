@@ -1,5 +1,12 @@
 ﻿@inject Company.WebApplication1.Services.Profile.ProfileManager ProfileManager
-
+@inject SignInManager<ApplicationUser> SignInManager
+@{
+    string userName = "";
+    if (SignInManager.IsSignedIn(User))
+    {
+        userName = User.Identity?.Name;
+    }
+}
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <a href="#" class="brand-link">
@@ -12,13 +19,14 @@
         <!-- Sidebar user (optional) -->
         <div class="user-panel mt-3 pb-3 mb-3 d-flex">
             <div class="image">
-                <img src="~/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
+                <img src="~/img/avatar-default.png" class="img-circle elevation-2" alt="User Image">
             </div>
             <div class="info">
-                <a href="#" class="d-block">Alexander Pierce</a>
+                <a href="#" class="d-block">@userName</a>
             </div>
         </div>
 
+        @*
         <!-- SidebarSearch Form -->
         <div class="form-inline">
             <div class="input-group" data-widget="sidebar-search">
@@ -30,6 +38,7 @@
                 </div>
             </div>
         </div>
+        *@
 
         <!-- Sidebar Menu -->
         <nav class="mt-2">
