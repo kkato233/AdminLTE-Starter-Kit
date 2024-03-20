@@ -13,10 +13,10 @@ namespace Company.WebApplication1.Pages.Account
 {
     public class ForgotPasswordModel : PageModel
     {
-        private readonly UserManager<ApplicationUser> _userManager;
+        private readonly UserManager<IdentityUser> _userManager;
         private readonly IMailManager _emailSender;
 
-        public ForgotPasswordModel(UserManager<ApplicationUser> userManager, IMailManager emailSender)
+        public ForgotPasswordModel(UserManager<IdentityUser> userManager, IMailManager emailSender)
         {
             _userManager = userManager;
             _emailSender = emailSender;

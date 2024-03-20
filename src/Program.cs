@@ -11,6 +11,11 @@ using Company.WebApplication1.Services.Mail;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Hosting;
 using Company.WebApplication1.Services.Profile;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
+using asp_net_admin.Utility;
+using ScottBrady91.AspNetCore.Identity;
+using asp_net_admin.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -31,38 +36,24 @@ var Configuration = builder.Configuration;
 
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
-       options.UseSqlServer(connectionString));
+       options.UseMySQL(connectionString));
 
+builder.Services.AddDbContext<AspNetAdminContext>(options =>
+       options.UseMySQL(connectionString));
 
-builder.Services.AddIdentity<ApplicationUser, IdentityRole>(config =>
+builder.Services.AddIdentity<IdentityUser, IdentityRole>(config =>
 {
     config.User.RequireUniqueEmail = true;    //  email
     config.User.AllowedUserNameCharacters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789 -._@+";
     config.SignIn.RequireConfirmedEmail = false;
 })
+.AddRoles<IdentityRole>()
 .AddEntityFrameworkStores<ApplicationDbContext>()
 .AddDefaultTokenProviders();
 
+builder.Services.AddScoped<IUserStore<IdentityUser>, CustomUserStore>();
 
-if (Configuration["Authentication:Facebook:IsEnabled"] == "true")
-{
-    builder.Services
-        .AddAuthentication()
-        .AddFacebook(facebookOptions => {
-            facebookOptions.AppId = Configuration["Authentication:Facebook:AppId"];
-            facebookOptions.AppSecret = Configuration["Authentication:Facebook:AppSecret"];
-        });
-}
-
-if (Configuration["Authentication:Google:IsEnabled"] == "true")
-{
-    builder.Services
-        .AddAuthentication()
-        .AddGoogle(googleOptions => {
-            googleOptions.ClientId = Configuration["Authentication:Google:ClientId"];
-            googleOptions.ClientSecret = Configuration["Authentication:Google:ClientSecret"];
-        });
-}
+builder.Services.AddScoped<IPasswordHasher<IdentityUser>, BCryptPasswordHasher<IdentityUser>>();
 
 builder.Services.AddRazorPages(options =>
 {

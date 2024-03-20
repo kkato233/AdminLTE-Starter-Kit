@@ -16,13 +16,13 @@ namespace Company.WebApplication1.Pages.Settings.TwoFactorAuth
 {
     public class ConfigModel : PageModel
     {
-        private readonly UserManager<ApplicationUser> _userManager;
+        private readonly UserManager<IdentityUser> _userManager;
         private readonly ILogger<ConfigModel> _logger;
         private readonly UrlEncoder _urlEncoder;
 
         private const string AuthenicatorUriFormat = "otpauth://totp/{0}:{1}?secret={2}&issuer={0}&digits=6";
 
-        public ConfigModel(UserManager<ApplicationUser> userManager, ILogger<ConfigModel> logger, UrlEncoder urlEncoder) 
+        public ConfigModel(UserManager<IdentityUser> userManager, ILogger<ConfigModel> logger, UrlEncoder urlEncoder) 
         {
             _userManager = userManager;
             _logger = logger;
@@ -95,7 +95,7 @@ namespace Company.WebApplication1.Pages.Settings.TwoFactorAuth
             return RedirectToPage("./RecoveryCodes");
         }
 
-        private async Task LoadSharedKeyAndQrCodeUriAsync(ApplicationUser user)
+        private async Task LoadSharedKeyAndQrCodeUriAsync(IdentityUser user)
         {
             // Load the authenticator key & QR code URI to display on the form
             var unformattedKey = await _userManager.GetAuthenticatorKeyAsync(user);

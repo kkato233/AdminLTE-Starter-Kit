@@ -1,5 +1,5 @@
 ﻿@inject Company.WebApplication1.Services.Profile.ProfileManager ProfileManager
-@inject SignInManager<ApplicationUser> SignInManager
+@inject SignInManager<IdentityUser> SignInManager
 @{
     string userName = "";
     if (SignInManager.IsSignedIn(User))

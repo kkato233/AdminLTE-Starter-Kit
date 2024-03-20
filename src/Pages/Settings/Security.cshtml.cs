@@ -17,10 +17,10 @@ namespace Company.WebApplication1.Pages.Settings
     {
         private readonly ILogger<IndexModel> _logger;
 
-        private readonly UserManager<ApplicationUser> _userManager;
-        private readonly SignInManager<ApplicationUser> _signInManager;
+        private readonly UserManager<IdentityUser> _userManager;
+        private readonly SignInManager<IdentityUser> _signInManager;
 
-        public SecurityModel(UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager, ILogger<IndexModel> logger) 
+        public SecurityModel(UserManager<IdentityUser> userManager, SignInManager<IdentityUser> signInManager, ILogger<IndexModel> logger) 
         {
             _userManager = userManager;
             _signInManager = signInManager;

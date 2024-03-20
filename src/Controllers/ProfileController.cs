@@ -13,20 +13,20 @@ namespace Company.WebApplication1.Controllers
 {
     public class ProfileController : Controller
     {
-        private readonly UserManager<ApplicationUser> _userManager;
-        private readonly SignInManager<ApplicationUser> _signInManager;
+        private readonly UserManager<IdentityUser> _userManager;
+        private readonly SignInManager<IdentityUser> _signInManager;
         private readonly ILogger<ProfileController> _logger;
 
-        public ProfileController(UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager, ILogger<ProfileController> logger)
+        public ProfileController(UserManager<IdentityUser> userManager, SignInManager<IdentityUser> signInManager, ILogger<ProfileController> logger)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _logger = logger;
         }
 
-        private ApplicationUser _currentUser;
+        private IdentityUser _currentUser;
 
-        public ApplicationUser CurrentUser
+        public IdentityUser CurrentUser
         {
             get
             {

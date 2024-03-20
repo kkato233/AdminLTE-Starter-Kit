@@ -13,11 +13,11 @@ namespace Company.WebApplication1.Pages.Settings.TwoFactorAuth
 {
     public class RecoveryCodesModel : PageModel
     {
-        private readonly UserManager<ApplicationUser> _userManager;
+        private readonly UserManager<IdentityUser> _userManager;
         private readonly ILogger<RecoveryCodesModel> _logger;
         private readonly ApplicationDbContext _dbContext;
 
-        public RecoveryCodesModel(UserManager<ApplicationUser> userManager, ILogger<RecoveryCodesModel> logger, ApplicationDbContext dbContext)
+        public RecoveryCodesModel(UserManager<IdentityUser> userManager, ILogger<RecoveryCodesModel> logger, ApplicationDbContext dbContext)
         {
             _userManager = userManager;
             _logger = logger;
